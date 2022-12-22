@@ -24,7 +24,7 @@ function Update(self)
 		self.lastMag = self.Magazine;
 		self.dingSound = false;
 		if self.Magazine.RoundCount == 0 then
-			self:Reload();
+			self:Reload(false);
 		end
 	else
 		if self.dingSound == false then

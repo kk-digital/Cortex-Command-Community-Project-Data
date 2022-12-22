@@ -48,7 +48,7 @@ function Update(self)
 					self.errorSound:Play(self.Pos);
 				elseif self.actionPhase == 4 then
 					self.ReloadTime = 1000 + (1000 * targetCount);
-					self:Reload();
+					self:Reload(false);
 				end
 			end
 			if self.actionPhase > 0 and self.actionPhase < 4 then

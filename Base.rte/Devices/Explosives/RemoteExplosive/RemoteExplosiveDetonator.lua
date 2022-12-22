@@ -37,7 +37,7 @@ function Update(self)
 					end
 					self.detonateSound:Play(self.Pos);
 					self.fireOn = true;
-					self:Reload();
+					self:Reload(false);
 				end
 			end
 		else

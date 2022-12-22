@@ -5,7 +5,7 @@ function M79GrenadeLauncherFailsafeOff(pieMenu, pieSlice, pieMenuOwner)
 		local magSwitchName = "Magazine Ronin M79 Grenade Launcher Impact";
 		if gun.Magazine == nil or gun.Magazine.PresetName ~= magSwitchName then
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload();
+			gun:Reload(false);
 			pieMenu:RemovePieSlicesByPresetName(pieSlice.PresetName);
 			pieMenu:AddPieSlice(CreatePieSlice("M79 Turn On Failsafe", "Ronin.rte"), gun);
 		end
@@ -19,7 +19,7 @@ function M79GrenadeLauncherFailsafeOn(pieMenu, pieSlice, pieMenuOwner)
 		local magSwitchName = "Magazine Ronin M79 Grenade Launcher Bounce";
 		if gun.Magazine == nil or gun.Magazine.PresetName ~= magSwitchName then
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload();
+			gun:Reload(false);
 			pieMenu:RemovePieSlicesByPresetName(pieSlice.PresetName);
 			pieMenu:AddPieSlice(CreatePieSlice("M79 Turn Off Failsafe", "Ronin.rte"), gun);
 		end

@@ -112,6 +112,6 @@ function Update(self)
 	elseif self:IsReloading() then
 		self.emitSmoke(math.floor((self.cooldown:LeftTillSimTimeLimitMS()/self.ReloadTime) * RangeRand(0.5, 2.0) + RangeRand(0.50, 0.75)));
 	elseif self.RoundInMagCount >= 0 then
-		self:Reload();
+		self:Reload(false);
 	end
 end

@@ -73,7 +73,7 @@ function Update(self)
 				self.chargeTimer:Reset();
 			end
 		else
-			self:Reload();
+			self:Reload(false);
 		end
 	else
 		self.Frame = 0;

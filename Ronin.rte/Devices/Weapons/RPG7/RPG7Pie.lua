@@ -6,7 +6,7 @@ function RoninRPGSwitchAmmo(pieMenu, pieSlice, pieMenuOwner)
 		if gun.Magazine == nil or gun.Magazine.PresetName ~= magSwitchName then
 			pieMenuOwner:RemoveInventoryItem("Shovel");
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload();
+			gun:Reload(false);
 		end
 	end
 end

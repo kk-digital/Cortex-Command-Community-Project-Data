@@ -5,7 +5,7 @@ function CoalitionMissileLauncherRocket(actor)
 		local magSwitchName = "Magazine Coalition Rocket Launcher";
 		if gun.Magazine == nil or (gun.Magazine ~= nil and gun.Magazine.PresetName ~= magSwitchName) then
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload();
+			gun:Reload(false);
 		end
 	end
 end
@@ -17,7 +17,7 @@ function CoalitionMissileLauncherMissile(actor)
 		local magSwitchName = "Magazine Coalition Missile Launcher";
 		if gun.Magazine == nil or (gun.Magazine ~= nil and gun.Magazine.PresetName ~= magSwitchName) then
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload();
+			gun:Reload(false);
 		end
 	end
 end

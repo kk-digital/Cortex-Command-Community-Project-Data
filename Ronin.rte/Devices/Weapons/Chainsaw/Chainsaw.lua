@@ -104,7 +104,7 @@ function Update(self)
 			self.stopSound:Play(self.Pos);
 
 			if self.Magazine.RoundCount == 0 then
-				self:Reload();
+				self:Reload(false);
 			end
 		end
 	else
