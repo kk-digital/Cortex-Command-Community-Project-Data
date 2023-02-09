@@ -30,7 +30,7 @@ function Update(self)
 	if self.reloadCycle and self.reloadTimer:IsPastSimMS(self.reloadDelay) and self:IsFull() == false then
 		local actor = MovableMan:GetMOFromID(self.RootID);
 		if MovableMan:IsActor(actor) then
-			self:Reload(false);
+			self:Reload();
 		end
 		self.reloadCycle = false;
 	end

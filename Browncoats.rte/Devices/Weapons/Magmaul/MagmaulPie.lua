@@ -5,7 +5,7 @@ function MagmaulFireGrenade(pieMenu, pieSlice, pieMenuOwner)
 		local magSwitchName = "Magazine GL-1 Fire";
 		if gun.Magazine == nil or (gun.Magazine ~= nil and gun.Magazine.PresetName ~= magSwitchName) then
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload(false);
+			gun:Reload();
 			pieMenu:RemovePieSlicesByPresetName(pieSlice.PresetName);
 			pieMenu:AddPieSlice(CreatePieSlice("Magmaul Fuel Bomb", "Browncoats.rte"), gun);
 		end
@@ -19,7 +19,7 @@ function MagmaulFuelGrenade(pieMenu, pieSlice, pieMenuOwner)
 		local magSwitchName = "Magazine GL-1 Fuel";
 		if gun.Magazine == nil or (gun.Magazine ~= nil and gun.Magazine.PresetName ~= magSwitchName) then
 			gun:SetNextMagazineName(magSwitchName);
-			gun:Reload(false);
+			gun:Reload();
 			pieMenu:RemovePieSlicesByPresetName(pieSlice.PresetName);
 			pieMenu:AddPieSlice(CreatePieSlice("Magmaul Fire Bomb", "Browncoats.rte"), gun);
 		end

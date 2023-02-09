@@ -69,7 +69,7 @@ function Update(self)
 					self.searchTimer:Reset();
 				end
 			else
-				self:Reload(false);
+				self:Reload();
 			end
 		end
 		if parent:IsPlayerControlled() then
