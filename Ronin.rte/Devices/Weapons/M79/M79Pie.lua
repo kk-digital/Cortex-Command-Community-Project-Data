@@ -1,4 +1,4 @@
-function M79GrenadeLauncherFailsafeOff(pieMenu, pieSlice, pieMenuOwner)
+function M79GrenadeLauncherFailsafeOff(pieMenuOwner, pieMenu, pieSlice)
 	local gun = pieMenuOwner.EquippedItem;
 	if gun then
 		local gun = ToHDFirearm(gun);
@@ -11,7 +11,7 @@ function M79GrenadeLauncherFailsafeOff(pieMenu, pieSlice, pieMenuOwner)
 	end
 end
 
-function M79GrenadeLauncherFailsafeOn(pieMenu, pieSlice, pieMenuOwner)
+function M79GrenadeLauncherFailsafeOn(pieMenuOwner, pieMenu, pieSlice)
 	local gun = pieMenuOwner.EquippedItem;
 	if gun then
 		local gun = ToHDFirearm(gun);
