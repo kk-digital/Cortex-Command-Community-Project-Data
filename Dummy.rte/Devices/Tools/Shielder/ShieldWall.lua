@@ -5,8 +5,11 @@ function Create(self)
 	MovableMan:AddParticle(self.glow);
 	self.glowID = self.glow.UniqueID;
 
+	self.soundEffect = CreateSoundContainer("Shielder Wall Sound", "Dummy.rte");
+	self.soundEffect.Pos = self.Pos;
+	self.soundEffect:Play();
+
 	self.AngularVel = 0;
-	self.baseLifetime = self.Lifetime;
 end
 
 function Update(self)
@@ -27,13 +30,16 @@ function Update(self)
 	else
 		self.Vel = Vector();
 	end
-	if self.GibWoundLimit > 0 then
-		self.Lifetime = math.max(self.baseLifetime * (1 - self.WoundCount/self.GibWoundLimit), 1);
+	if self.Age > self.Lifetime - 30 * (1 + self.WoundCount) then
+		self:GibThis();
 	end
 end
 
 function Destroy(self)
 	if self.glow then
 		self.glow.ToDelete = true;
+	end
+	if self.soundEffect then
+		self.soundEffect:Stop();
 	end
 end

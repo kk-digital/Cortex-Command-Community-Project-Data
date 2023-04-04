@@ -1,15 +1,19 @@
 function Create(self)
+	self.delayTimer = Timer();
+
 	self.delayTime = 100;
-	
-	self.pointCount = 30;
+
+	self.pointCount = 40;
 	self.spiralScale = 10;
+	self.skipPoints = 10;
 end
 
 function Update(self)
-	if self.Age > self.delayTime then
-		for i = 1, self.pointCount do
+	if self.delayTimer:IsPastSimMS(self.delayTime) then
+		for i = self.skipPoints, self.pointCount - 1 do
 			local radius = self.spiralScale * math.sqrt(i);
-			local checkPos = self.Pos + Vector(radius, 0):RadRotate(i * 2.39996);
+			local angle = i * 137.508;
+			local checkPos = self.Pos + Vector(radius, 0):DegRotate(angle);
 			if SceneMan.SceneWrapsX == true then
 				if checkPos.X > SceneMan.SceneWidth then
 					checkPos = Vector(checkPos.X - SceneMan.SceneWidth, checkPos.Y);

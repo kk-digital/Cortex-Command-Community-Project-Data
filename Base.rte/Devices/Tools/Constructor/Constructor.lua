@@ -76,6 +76,7 @@ function ConstructorTerrainRay(start, trace, skip)
 end
 
 function Create(self)
+	self.fireTimer = Timer();
 	self.displayTimer = Timer();
 
 	self.buildTimer = Timer();
@@ -86,7 +87,7 @@ function Create(self)
 	self.blockSize = 24;
 	self.fullBlock = 64 * self.buildCost;	--One full 24x24 block of concrete requires 64 units of resource
 	self.maxResource = 12 * self.fullBlock;
-	self.startResource = 3;
+	self.startResource = 6;
 	self.resource = self.startResource * self.fullBlock;
 	self.tunnelFillTimer = Timer();
 
@@ -94,7 +95,8 @@ function Create(self)
 
 	self.digStrength = 200;	--The StructuralIntegrity limit of harvestable materials
 
-	self.digLength = 40;
+	self.digLength = 50;
+	self.digsPerSecond = 100;
 	self.spreadRange = math.rad(self.ParticleSpreadRange);
 	self.buildsPerSecond = 100;
 	self.buildSound = CreateSoundContainer("Geiger Click", "Base.rte");
@@ -211,7 +213,7 @@ function Update(self)
 		if self.Magazine then
 			self.Magazine.RoundCount = math.max(self.resource, 1);
 
-			self.Magazine.Mass = 1 + 29 * (self.resource/self.maxResource);
+			self.Magazine.Mass = 1 + 39 * (self.resource/self.maxResource);
 			self.Magazine.Scale = 0.5 + (self.resource/self.maxResource) * 0.5;
 
 			local parentWidth = ToMOSprite(actor):GetSpriteWidth();
@@ -332,7 +334,11 @@ function Update(self)
 						self:Deactivate();
 					end
 				else
-					for i = 1, self.RoundsFired do
+
+					local digAmount = (self.fireTimer.ElapsedSimTimeMS * 0.001) * self.digsPerSecond;
+					self.fireTimer:Reset();
+
+					for i = 1, digAmount do
 
 						local digPos = ConstructorTerrainRay(self.MuzzlePos, Vector(self.digLength, 0):RadRotate(angle + RangeRand(-1, 1) * self.spreadRange), 1);
 
@@ -388,6 +394,8 @@ function Update(self)
 						end
 					end
 				end
+			else
+				self.fireTimer:Reset();
 			end
 
 		elseif mode == 1 then	-- cancel

@@ -51,7 +51,8 @@ function NativeHumanAI:Create(Owner)
 	-- the native AI assume the jetpack cannot be destroyed
 	if Owner.Jetpack then
 		if not Members.isPlayerOwned then
-			Owner.Jetpack.Throttle = Owner.Jetpack.Throttle + 0.15	-- increase jetpack strength slightly to compensate for AI ineptitude
+			-- increase jetpack strength slightly to compensate for AI ineptitude
+			Owner.Jetpack.Throttle = 0.25;
 		end
 
 		Members.jetImpulseFactor = Owner.Jetpack:EstimateImpulse(false) * GetPPM() / TimerMan.DeltaTimeSecs;
@@ -339,14 +340,13 @@ function NativeHumanAI:Update(Owner)
 								self.Ctrl:SetState(control, state);
 							end
 							if Leader.EquippedItem then
-								local aimDelta = SceneMan:ShortestDistance(Leader.Pos, Leader.ViewPoint, false);
-								
+
 								if IsHDFirearm(Leader.EquippedItem) then
-									local aimCorrectionRatio = Leader.SharpAimProgress * (dist/radius);
-									self.Ctrl.AnalogAim = (aimDelta * (1 - aimCorrectionRatio) + SceneMan:ShortestDistance(Owner.Pos, Leader.ViewPoint + aimDelta, false) * aimCorrectionRatio).Normalized;
-									
+
 									local LeaderWeapon = ToHDFirearm(Leader.EquippedItem);
 									if LeaderWeapon:IsWeapon() then
+										local AimDelta = SceneMan:ShortestDistance(Leader.Pos, Leader.ViewPoint, false);
+										self.Ctrl.AnalogAim = SceneMan:ShortestDistance(Owner.Pos, Leader.ViewPoint + AimDelta, false).Normalized;
 										self.deviceState = AHuman.POINTING;
 
 										-- check if the SL is shooting and if we have a similar weapon
@@ -383,19 +383,22 @@ function NativeHumanAI:Update(Owner)
 											end
 										end
 									end
-								elseif IsThrownDevice(Leader.EquippedItem) and Leader:IsPlayerControlled() and ToThrownDevice(Leader.EquippedItem):HasObjectInGroup("Bombs - Grenades") and Owner:HasObjectInGroup("Bombs - Grenades") then
+								elseif IsTDExplosive(Leader.EquippedItem) and Leader:IsPlayerControlled() then
 									-- throw grenades in unison with squad
-									self.Ctrl.AnalogAim = aimDelta.Normalized;
-									self.deviceState = AHuman.POINTING;
+									if ToTDExplosive(Leader.EquippedItem):HasObjectInGroup("Bombs - Grenades") and Owner:HasObjectInGroup("Bombs - Grenades") then
 
-									if Leader:GetController():IsState(Controller.WEAPON_FIRE) then
+										self.Ctrl.AnalogAim = SceneMan:ShortestDistance(Leader.Pos, Leader.ViewPoint, false).Normalized;
+										self.deviceState = AHuman.POINTING;
 
-										Owner:EquipDeviceInGroup("Bombs - Grenades", true);
+										if Leader:GetController():IsState(Controller.WEAPON_FIRE) then
 
-										self.Target = nil;
-										self.squadShoot = true;
-									else
-										self.squadShoot = false;
+											Owner:EquipDeviceInGroup("Bombs - Grenades", true);
+
+											self.Target = nil;
+											self.squadShoot = true;
+										else
+											self.squadShoot = false;
+										end
 									end
 								end
 							end

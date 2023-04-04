@@ -1499,9 +1499,9 @@ function MetaFight:PickCraft(MetaPlayer)
 	-- Use base crafts as a fall-back
 	if not Craft then
 		if math.random() < 0.5 then
-			Craft = RandomACDropShip("Craft", MetaPlayer.NativeTechModule);
+			Craft = RandomACDropShip("Craft", "Base.rte");
 		else
-			Craft = RandomACRocket("Craft", MetaPlayer.NativeTechModule);
+			Craft = RandomACRocket("Craft", "Base.rte");
 		end
 	end
 
@@ -1537,9 +1537,9 @@ function MetaFight:OrderHeavyLoadout(player, team)
 			craftMaxMass = math.huge;
 		elseif craftMaxMass < 1 then
 			if math.random() < 0.5 then
-				Craft = RandomACDropShip("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACDropShip("Craft", "Base.rte");
 			else
-				Craft = RandomACRocket("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACRocket("Craft", "Base.rte");
 			end
 			craftMaxMass = Craft.MaxInventoryMass;
 		end
@@ -1598,9 +1598,9 @@ function MetaFight:OrderMediumLoadout(player, team)
 			craftMaxMass = math.huge;
 		elseif craftMaxMass < 1 then
 			if math.random() < 0.5 then
-				Craft = RandomACDropShip("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACDropShip("Craft", "Base.rte");
 			else
-				Craft = RandomACRocket("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACRocket("Craft", "Base.rte");
 			end
 			craftMaxMass = Craft.MaxInventoryMass;
 		end
@@ -1659,9 +1659,9 @@ function MetaFight:OrderLightLoadout(player, team)
 			craftMaxMass = math.huge;
 		elseif craftMaxMass < 1 then
 			if math.random() < 0.5 then
-				Craft = RandomACDropShip("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACDropShip("Craft", "Base.rte");
 			else
-				Craft = RandomACRocket("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACRocket("Craft", "Base.rte");
 			end
 			craftMaxMass = Craft.MaxInventoryMass;
 		end
@@ -1714,9 +1714,9 @@ function MetaFight:OrderScoutLoadout(player, team)
 			craftMaxMass = math.huge;
 		elseif craftMaxMass < 1 then
 			if math.random() < 0.5 then
-				Craft = RandomACDropShip("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACDropShip("Craft", "Base.rte");
 			else
-				Craft = RandomACRocket("Craft", MetaPlayer.NativeTechModule);
+				Craft = RandomACRocket("Craft", "Base.rte");
 			end
 			craftMaxMass = Craft.MaxInventoryMass;
 		end

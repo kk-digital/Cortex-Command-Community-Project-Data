@@ -7,14 +7,16 @@ function Create(self)
 	self.muzzleSmokeSpread = math.rad((self.ShakeRange + self.SharpShakeRange) * 0.5 + (self.muzzleSmokeVel + self.ParticleSpreadRange) * 0.5);
 end
 
-function OnFire(self)
-	local smokeCount = math.random(self.muzzleSmokeCountMin, self.muzzleSmokeCountMax);
+function Update(self)
+	if self.FiredFrame then
+		local smokeCount = math.random(self.muzzleSmokeCountMin, self.muzzleSmokeCountMax);
 
-	for i = 1, smokeCount do
-		local smoke = CreateMOSParticle("Tiny Smoke Trail " .. math.random(3));
-		smoke.Pos = self.MuzzlePos;
-		smoke.AirResistance = smoke.AirResistance * RangeRand(0.5, 1.0);
-		smoke.Vel = Vector(i/smokeCount * self.muzzleSmokeVel * self.FlipFactor, 0):RadRotate(self.RotAngle + self.muzzleSmokeSpread * RangeRand(-1, 1));
-		MovableMan:AddParticle(smoke);
+		for i = 1, smokeCount do
+			local smoke = CreateMOSParticle("Tiny Smoke Trail " .. math.random(3));
+			smoke.Pos = self.MuzzlePos;
+			smoke.AirResistance = smoke.AirResistance * RangeRand(0.5, 1.0);
+			smoke.Vel = Vector(i/smokeCount * self.muzzleSmokeVel * self.FlipFactor, 0):RadRotate(self.RotAngle + self.muzzleSmokeSpread * RangeRand(-1, 1));
+			MovableMan:AddParticle(smoke);
+		end
 	end
 end
