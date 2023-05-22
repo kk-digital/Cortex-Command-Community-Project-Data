@@ -28,20 +28,6 @@ AddActivity = GAScripted
 	DeployUnitsSwitchEnabled = 1
 	DefaultDeployUnits = 0
 
-AddActivity = GAScripted
-	PresetName = Default Preset
-	Description = Survive waves of AI-controlled enemies until they run out of gold, skirmish against human players, or both! Adjust the Difficulty to change AI funds and spawn frequency.
-	SceneName = Ketanot Hills
-	ScriptFile = Base.rte/Activities/SkirmishDefense.lua
-	TeamOfPlayer1 = 0
-	TeamOfPlayer2 = 1
-	TeamOfPlayer3 = 2
-	TeamOfPlayer4 = 3
-	MinTeamsRequired = 2
-	LuaClassName = SkirmishDefense
-	DefaultRequireClearPathToOrbit = 1
-	DeployUnitsSwitchEnabled = 1
-	DefaultDeployUnits = 0
 
 AddActivity = GAScripted
 	PresetName = Wave Defense
