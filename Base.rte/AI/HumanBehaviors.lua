@@ -951,7 +951,7 @@ function HumanBehaviors.WeaponSearch(AI, Owner, Abort)
 		local DevicesToPickUp = {};
 		for _, Item in pairs(Devices) do
 			if MovableMan:ValidMO(Item) then
-				waypoints = SceneMan.Scene:CalculatePath(Owner.Pos, Item.Pos, false, 1);
+				waypoints = SceneMan.Scene:CalculatePath(Owner.Pos, Item.Pos, false, 1, Owner.Team);
 				if waypoints < minDist and waypoints > -1 then
 					-- estimate the walking distance to the item
 					if Item:HasObjectInGroup("Weapons - Primary") then
@@ -1062,7 +1062,7 @@ function HumanBehaviors.ToolSearch(AI, Owner, Abort)
 		for _, Item in pairs(Devices) do
 			if MovableMan:ValidMO(Item) and Item:HasObjectInGroup("Tools - Diggers") then
 				-- estimate the walking distance to the item
-				local waypoints = SceneMan.Scene:CalculatePath(Owner.Pos, Item.Pos, false, 1);
+				local waypoints = SceneMan.Scene:CalculatePath(Owner.Pos, Item.Pos, false, 1, Owner.Team);
 				if waypoints < minDist and waypoints > -1 then
 					table.insert(DevicesToPickUp, {HD=Item, score=waypoints});
 				end
@@ -2212,15 +2212,6 @@ function HumanBehaviors.ShootTarget(AI, Owner, Abort)
 		end
 	elseif Dist.X < 0 then
 		Owner.HFlipped = true;
-	end
-
-	-- alert nearby allies	TODO: do this better engine-side
-	for i = 0.95, 0.5, -0.4 do
-		local Alert = CreateTDExplosive("Alert Device "..math.random(3), "Base.rte");
-		Alert.Pos = Owner.Pos + Dist * i;
-		Alert.Team = AI.Target.Team;
-		Alert:Activate();
-		MovableMan:AddParticle(Alert);
 	end
 
 	local _ai, _ownr, _abrt = coroutine.yield(); -- wait until next frame
