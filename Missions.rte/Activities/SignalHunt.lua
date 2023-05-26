@@ -203,8 +203,6 @@ function SignalHunt:ResumeLoadedGame()
 	for player = Activity.PLAYER_1, Activity.MAXPLAYERCOUNT - 1 do
 		if self:PlayerActive(player) and self:PlayerHuman(player) then
 			self.brainDead[player] = self:LoadNumber("brainDead." .. tostring(player)) ~= 0;
-			self:SetPlayerHadBrain(player, true);
-			self:SetPlayerBrain(nil, player);
 		end
 	end
 
@@ -262,7 +260,7 @@ function SignalHunt:DoGameOverCheck()
 					self:SetPlayerBrain(nil, player);
 
 					local newBrain = MovableMan:GetUnassignedBrain(team);
-					if self.brainDead[player] == false and newBrain and MovableMan:IsActor(newBrain) then
+					if newBrain and self.brainDead[player] == false and MovableMan:IsActor(newBrain) then
 						self:SetPlayerBrain(newBrain, player);
 						self:SwitchToActor(newBrain, player, team);
 						self:GetBanner(GUIBanner.RED, player):ClearText();
@@ -497,7 +495,7 @@ function SignalHunt:UpdateActivity()
 			self.evacuationRocket.Pos = Vector(self.humanLZ:GetCenterPoint().X, -100);
 			self.evacuationRocket.Team = self.humanTeam;
 			self.evacuationRocket:SetControllerMode(Controller.CIM_AI, -1);
-			self.evacuationRocket.HUDVisible = false;
+			rocket.HUDVisible = false;
 			self.evacuationRocket.PlayerControllable = false;
 			self.evacuationRocket.AIMode = Actor.AIMODE_STAY;
 			self.evacuationRocket:SetGoldValue(0);
