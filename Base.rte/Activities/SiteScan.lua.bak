@@ -33,8 +33,8 @@ function SiteScan:StartActivity()
 			-- Set the view to observation, since that's all we're doing here
 			self:SetViewState(Activity.OBSERVE, player);
 			-- Clear out the banners, we don't need them showing "GO!" here
-			--self:GetBanner(GUIBanner.YELLOW, player):ClearText();
-			--self:GetBanner(GUIBanner.RED, player):ClearText();
+			self:GetBanner(GUIBanner.YELLOW, player):ClearText();
+			self:GetBanner(GUIBanner.RED, player):ClearText();
 		end
 	end
 
@@ -163,8 +163,8 @@ function SiteScan:UpdateActivity()
 		-- Manage post-scan messages on screen
 		for player = Activity.PLAYER_1, Activity.MAXPLAYERCOUNT - 1 do
 			if self:PlayerActive(player) and self:PlayerHuman(player) then
-				--self:GetBanner(GUIBanner.YELLOW, player):ClearText();
-				--self:GetBanner(GUIBanner.RED, player):ClearText();
+				self:GetBanner(GUIBanner.YELLOW, player):ClearText();
+				self:GetBanner(GUIBanner.RED, player):ClearText();
 			end
 		end
 	end

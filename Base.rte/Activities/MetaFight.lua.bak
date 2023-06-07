@@ -894,12 +894,12 @@ function MetaFight:UpdateActivity()
 				-- DEFENDERS
 				-- Update the editor if we're placing a brain
 				if not self.InvadingPlayer[player] and not self.Ready[player] then
-					--self:GetEditorGUI(player):Update();
+					self:GetEditorGUI(player):Update();
 					-- This defending player appears to be done placing his brain
-					--if self:GetEditorGUI(player).EditorMode == SceneEditorGUI.PICKINGOBJECT or self:GetEditorGUI(player).EditorMode == SceneEditorGUI.DONEEDITING then
+					if self:GetEditorGUI(player).EditorMode == SceneEditorGUI.PICKINGOBJECT or self:GetEditorGUI(player).EditorMode == SceneEditorGUI.DONEEDITING then
 						-- Check if we're really ready - if not, TestBrainRes will kick us back to installing brain mode
-						--self.Ready[player] = self:GetEditorGUI(player):TestBrainResidence(false);
-					--end
+						self.Ready[player] = self:GetEditorGUI(player):TestBrainResidence(false);
+					end
 				end
 
 				----------------------------------
