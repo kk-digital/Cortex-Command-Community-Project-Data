@@ -4,10 +4,10 @@ function DisableDeliveryMassEnforcementScript:StartScript()
 		if activity then
 			activity = ToGameActivity(activity);
 			if activity:PlayerActive(player) then
-				local buyMenu = activity:GetBuyGUI(player);
-				if buyMenu then
-					buyMenu.EnforceMaxMassConstraint = false;
-				end
+				--local buyMenu = activity:GetBuyGUI(player);
+				--if buyMenu then
+					--buyMenu.EnforceMaxMassConstraint = false;
+				--end
 			end
 		end
 	end
