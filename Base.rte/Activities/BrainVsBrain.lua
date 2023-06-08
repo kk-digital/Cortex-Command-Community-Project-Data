@@ -289,7 +289,7 @@ function BrainvsBrain:UpdateActivity()
 		return
 	elseif self.ActivityState == Activity.EDITING then
 		-- Game is in editing or other modes, so open all does and reset the game running timer
-		MovableMan:OpenAllDoors(true, Activity.NOTEAM)
+		--MovableMan:OpenAllDoors(true, Activity.NOTEAM)
 		
 		-- Set all actors to sentry mode
 		for actor in MovableMan.AddedActors do
@@ -326,7 +326,7 @@ function BrainvsBrain:UpdateActivity()
 			end
 			
 			-- Close all doors after placing brains so our fortresses are secure
-			MovableMan:OpenAllDoors(false, Activity.NOTEAM)
+			--MovableMan:OpenAllDoors(false, Activity.NOTEAM)
 			
 			-- Set all actors to sentry mode
 			for actor in MovableMan.AddedActors do

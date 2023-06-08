@@ -16,7 +16,7 @@ function Test:StartActivity()
 				if not foundBrain then
 					self.ActivityState = Activity.EDITING
 					-- Open all doors so we can do pathfinding through them with the brain placement
-					MovableMan:OpenAllDoors(true, Activity.NOTEAM)
+					--MovableMan:OpenAllDoors(true, Activity.NOTEAM)
 					AudioMan:ClearMusicQueue()
 					AudioMan:PlayMusic("Base.rte/Music/dBSoundworks/ccambient4.ogg", -1, -1)
 					self:SetLandingZone(Vector(player*SceneMan.SceneWidth/4, 0), player)
@@ -57,7 +57,7 @@ end
 function Test:UpdateActivity()
 	if self.ActivityState == Activity.EDITING then
 		-- Game is in editing or other modes, so open all does and reset the game running timer
-		MovableMan:OpenAllDoors(true, Activity.NOTEAM)
+		--MovableMan:OpenAllDoors(true, Activity.NOTEAM)
 		-- self.StartTimer:Reset()
 	end
 end

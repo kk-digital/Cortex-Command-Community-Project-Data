@@ -10,7 +10,7 @@ function WaveDefense:CheckBrains()
 				if not foundBrain then
 					self.ActivityState = Activity.EDITING
 					-- Open all doors so we can do pathfinding through them with the brain placement
-					MovableMan:OpenAllDoors(true, Activity.NOTEAM)
+					--MovableMan:OpenAllDoors(true, Activity.NOTEAM)
 					AudioMan:ClearMusicQueue()
 					AudioMan:PlayMusic("Base.rte/Music/dBSoundworks/ccambient4.ogg", -1, -1)
 					self:SetLandingZone(Vector(player*SceneMan.SceneWidth/4, 0), player)
@@ -152,7 +152,7 @@ function WaveDefense:UpdateActivity()
 	
 	if self.ActivityState == Activity.EDITING then
 		-- Game is in editing or other modes, so open all doors
-		MovableMan:OpenAllDoors(true, Activity.NOTEAM)
+		--MovableMan:OpenAllDoors(true, Activity.NOTEAM)
 		
 		-- Remove fog
 		if self.Fog then
@@ -217,7 +217,7 @@ function WaveDefense:UpdateActivity()
 				end
 			end
 			
-			MovableMan:OpenAllDoors(false, Activity.NOTEAM)	-- Close all doors after placing brains so our fortresses are secure
+			--MovableMan:OpenAllDoors(false, Activity.NOTEAM)	-- Close all doors after placing brains so our fortresses are secure
 			
 			-- Add fog
 			if self.Fog then
@@ -232,7 +232,7 @@ function WaveDefense:UpdateActivity()
 						SceneMan:MakeAllUnseen(Vector(65, 65), team)
 					end
 				end
-				
+				--[[
 				for Act in MovableMan.AddedActors do
 					if Act.ClassName ~= "ADoor" then
 						for ang = 0, math.pi*2, 0.15 do
@@ -248,6 +248,7 @@ function WaveDefense:UpdateActivity()
 						end
 					end
 				end
+				]]--
 			end
 		end
 		
@@ -494,6 +495,7 @@ function WaveDefense:UpdateActivity()
 				local objectives = 0
 				for Act in MovableMan.Actors do 
 					if Act.Team == self.CPUTeam and not Act:IsDead() then
+						--[[
 						if Act.ClassName ~= "ADoor" then
 							enemyPresent = true
 							
@@ -509,6 +511,7 @@ function WaveDefense:UpdateActivity()
 								end
 							end
 						end
+						]]--
 					end
 				end
 				

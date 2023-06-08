@@ -288,6 +288,7 @@ function BunkerBreach:UpdateActivity()
 		local allyCount = 0;
 		local diggerCount = 0;
 		for actor in MovableMan.Actors do
+			--[[
 			if actor.ClassName ~= "ADoor" and actor.Health > 0 then
 				--Units will weigh in based on their Health
 				if actor.Team == self.playerTeam then
@@ -300,6 +301,16 @@ function BunkerBreach:UpdateActivity()
 					if funds < 0 and self.CPUTeam == self.attackerTeam then
 						self:AddObjectivePoint("Destroy!", actor.AboveHUDPos, self.playerTeam, GameActivity.ARROWDOWN)
 					end
+				end
+			end
+			--]]
+			if actor.Team == self.CPUTeam then
+				enemyCount = enemyCount + actor.Health/actor.MaxHealth;
+				if actor:HasObjectInGroup("Tools - Diggers") and actor.AIMode == Actor.AIMODE_GOLDDIG then
+					diggerCount = diggerCount + 1;
+				end
+				if funds < 0 and self.CPUTeam == self.attackerTeam then
+					self:AddObjectivePoint("Destroy!", actor.AboveHUDPos, self.playerTeam, GameActivity.ARROWDOWN)
 				end
 			end
 		end

@@ -58,11 +58,11 @@ function OneManArmy:StartActivity()
 		secondaryGroup = "Tools";
 	end
 	-- Destroy all doors for this Activity
-	MovableMan:OpenAllDoors(true, -1);
+	--MovableMan:OpenAllDoors(true, -1);
 	for actor in MovableMan.AddedActors do
 		if actor.ClassName == "ADoor" then
-			actor.ToSettle = true;
-			actor:GibThis();
+			--actor.ToSettle = true;
+			--actor:GibThis();
 		end
 	end
 	-- Check if we already have a brain assigned

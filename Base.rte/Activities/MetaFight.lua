@@ -54,9 +54,11 @@ function MetaFight:BrainCheck()
 							
 							-- This whole loser team is done for, so swap its doors to the winner's team, and self-destruct all of its other actors.
 							for actor in MovableMan.Actors do
+								--[[
 								if actor.Team == team and IsADoor(actor) then
 									actor.Team = self.WinnerTeam;
 								end
+								]]--
 							end
 							MovableMan:KillAllTeamActors(team);
 							-- Finally, deactive the player entirely -	no don't this is done in AutoResolveOffensive if needed
@@ -144,7 +146,7 @@ function MetaFight:StartActivity()
 	self.NoBrainsLeft = false;
 
 	-- Open all doors so we can do pathfinding through them with the brain placement
-	MovableMan:OpenAllDoors(true, Activity.NOTEAM);
+	--MovableMan:OpenAllDoors(true, Activity.NOTEAM);
 	
 	-- Make all leftover craft take off and set all guards placed in the build phase in sentry mode
 	for actor in MovableMan.AddedActors do
@@ -640,7 +642,7 @@ function MetaFight:StartActivity()
 						-- MO.Health = 0
 						MO.ToDelete = true
 						if MO.ClassName == "ADoor" then
-							ids = ids - 2
+							--ids = ids - 2
 						else
 							ids = ids - 8
 						end
@@ -762,7 +764,7 @@ function MetaFight:EndActivity()
 	end
 	
 	-- Open all doors
-	MovableMan:OpenAllDoors(true, Activity.NOTEAM);
+	--MovableMan:OpenAllDoors(true, Activity.NOTEAM);
 	
 end
 
@@ -969,7 +971,7 @@ function MetaFight:UpdateActivity()
 			-- START the game
 			self.ActivityState = Activity.RUNNING;
 			-- Close all doors after placing brains so our fortresses are secure
-			MovableMan:OpenAllDoors(false, Activity.NOTEAM);
+			--MovableMan:OpenAllDoors(false, Activity.NOTEAM);
 			-- Activate the AIs
 			self:DisableAIs(false, Activity.NOTEAM);
 			self:InitAIs()
