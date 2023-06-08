@@ -203,7 +203,7 @@ function SkirmishDefense:UpdateActivity()
 				for Act in MovableMan.AddedActors do
 					if Act.ClassName ~= "ADoor" then
 						for ang = 0, math.pi*2, 0.15 do
-							SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(30+FrameMan.PlayerScreenWidth*0.5, 0):RadRotate(ang), Vector(), 1, 5)
+							--SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(30+FrameMan.PlayerScreenWidth*0.5, 0):RadRotate(ang), Vector(), 1, 5)
 						end
 					end
 				end
@@ -211,7 +211,7 @@ function SkirmishDefense:UpdateActivity()
 				for Act in MovableMan.Actors do
 					if Act.ClassName ~= "ADoor" then
 						for ang = 0, math.pi*2, 0.15 do
-							SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(30+FrameMan.PlayerScreenWidth*0.5, 0):RadRotate(ang), Vector(), 1, 5)
+							--SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(30+FrameMan.PlayerScreenWidth*0.5, 0):RadRotate(ang), Vector(), 1, 5)
 						end
 					end
 				end
@@ -516,6 +516,7 @@ function SkirmishDefense:UpdateActivity()
 							local objectives = 0
 							for Act in MovableMan.Actors do 
 								if Act.Team == team and not Act:IsDead() then
+									--[[
 									if Act.ClassName ~= "ADoor" then
 										enemyPresent = true
 										
@@ -531,6 +532,7 @@ function SkirmishDefense:UpdateActivity()
 											end
 										end
 									end
+									]]--
 								end
 							end
 							

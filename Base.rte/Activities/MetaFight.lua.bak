@@ -54,9 +54,11 @@ function MetaFight:BrainCheck()
 							
 							-- This whole loser team is done for, so swap its doors to the winner's team, and self-destruct all of its other actors.
 							for actor in MovableMan.Actors do
+								--[[
 								if actor.Team == team and IsADoor(actor) then
 									actor.Team = self.WinnerTeam;
 								end
+								]]--
 							end
 							MovableMan:KillAllTeamActors(team);
 							-- Finally, deactive the player entirely -	no don't this is done in AutoResolveOffensive if needed
@@ -144,7 +146,7 @@ function MetaFight:StartActivity()
 	self.NoBrainsLeft = false;
 
 	-- Open all doors so we can do pathfinding through them with the brain placement
-	MovableMan:OpenAllDoors(true, Activity.NOTEAM);
+	--MovableMan:OpenAllDoors(true, Activity.NOTEAM);
 	
 	-- Make all leftover craft take off and set all guards placed in the build phase in sentry mode
 	for actor in MovableMan.AddedActors do
@@ -762,7 +764,7 @@ function MetaFight:EndActivity()
 	end
 	
 	-- Open all doors
-	MovableMan:OpenAllDoors(true, Activity.NOTEAM);
+	--MovableMan:OpenAllDoors(true, Activity.NOTEAM);
 	
 end
 
@@ -894,12 +896,12 @@ function MetaFight:UpdateActivity()
 				-- DEFENDERS
 				-- Update the editor if we're placing a brain
 				if not self.InvadingPlayer[player] and not self.Ready[player] then
-					self:GetEditorGUI(player):Update();
+					--self:GetEditorGUI(player):Update();
 					-- This defending player appears to be done placing his brain
-					if self:GetEditorGUI(player).EditorMode == SceneEditorGUI.PICKINGOBJECT or self:GetEditorGUI(player).EditorMode == SceneEditorGUI.DONEEDITING then
+					--if self:GetEditorGUI(player).EditorMode == SceneEditorGUI.PICKINGOBJECT or self:GetEditorGUI(player).EditorMode == SceneEditorGUI.DONEEDITING then
 						-- Check if we're really ready - if not, TestBrainRes will kick us back to installing brain mode
-						self.Ready[player] = self:GetEditorGUI(player):TestBrainResidence(false);
-					end
+						--self.Ready[player] = self:GetEditorGUI(player):TestBrainResidence(false);
+					--end
 				end
 
 				----------------------------------
@@ -969,7 +971,7 @@ function MetaFight:UpdateActivity()
 			-- START the game
 			self.ActivityState = Activity.RUNNING;
 			-- Close all doors after placing brains so our fortresses are secure
-			MovableMan:OpenAllDoors(false, Activity.NOTEAM);
+			--MovableMan:OpenAllDoors(false, Activity.NOTEAM);
 			-- Activate the AIs
 			self:DisableAIs(false, Activity.NOTEAM);
 			self:InitAIs()

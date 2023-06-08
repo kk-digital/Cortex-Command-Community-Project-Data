@@ -104,7 +104,7 @@ end
 function NetworkTest:UpdateActivity()
 	if self.ActivityState == Activity.EDITING then
 		-- Game is in editing or other modes, so open all does and reset the game running timer
-		MovableMan:OpenAllDoors(true, Activity.NOTEAM)
+		--MovableMan:OpenAllDoors(true, Activity.NOTEAM)
 		-- self.StartTimer:Reset()
 	end
 	--ConsoleMan:ForceVisibility(true)

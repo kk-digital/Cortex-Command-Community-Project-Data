@@ -31,7 +31,7 @@ function CrabBehaviors.LookForTargets(AI, Owner)
 						AI.Target = nil	-- stop shooting
 					end
 				elseif FoundMO.ClassName ~= "ADoor" and
-					SceneMan:ShortestDistance(Owner.Pos, FoundMO.Pos, false).Magnitude < Owner.Diameter + FoundMO.Diameter
+					--SceneMan:ShortestDistance(Owner.Pos, FoundMO.Pos, false).Magnitude < Owner.Diameter + FoundMO.Diameter
 				then
 					AI.BlockingMO = FoundMO	-- this MO is blocking our path
 				end
@@ -45,7 +45,7 @@ function CrabBehaviors.LookForTargets(AI, Owner)
 				elseif FoundMO.ClassName == "ACDropShip" then
 					FoundMO = ToACDropShip(FoundMO)
 				elseif FoundMO.ClassName == "ADoor" and FoundMO.Team ~= Activity.NOTEAM and Owner.AIMode ~= Actor.AIMODE_SENTRY and ToADoor(FoundMO).Door and ToADoor(FoundMO).Door:IsAttached() and HumanBehaviors.GetProjectileData(Owner).pen * 0.9 > ToADoor(FoundMO).Door.Material.StructuralIntegrity then
-					FoundMO = ToADoor(FoundMO)
+					--FoundMO = ToADoor(FoundMO)
 				elseif FoundMO.ClassName == "Actor" then
 					FoundMO = ToActor(FoundMO)
 				else
